@@ -1,10 +1,11 @@
 import pygame
-from pygame.locals import *
-from constants import *
+from Constant.constants import *
 
 
-class LevelMaze:
+# create a class for a level
 
+class Level_Maze:
+    # define a constructor
     def __init__(self, file):
         self.file = file
         self.structure = 0
