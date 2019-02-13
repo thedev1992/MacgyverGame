@@ -2,10 +2,11 @@ import pygame
 from pygame.locals import*
 
 # different module importation
-from Classes.classes import*
+from Classes.Maze import*
 from Constant.constants import*
+#from Classes.classes_object import*
 
-# pygame initialisation
+#pygame initialisation
 pygame.init()
 
 # creation of the window instance
@@ -22,8 +23,16 @@ window.blit(background, (0, 0))
 pygame.display.flip()
 
 # create an instance of a level and his generation
-level = LevelMaze(LevelG)
+level = Levelmaze(LevelG)
 level.generate()
+
+mac = pygame.image.load(img_MacGyver).convert()
+
+# creation of the instance of the items
+#needle = Needle('aiguille.png', level)
+#plastic_tube = PlasticTube('tube_plastique.png', level)
+#syringe = Syringe('syringe.png', level)
+
 
 # main loop of the game
 game_over = False
@@ -34,5 +43,6 @@ while not game_over:
             game_over = True
 
     window.blit(background, (0, 0))
+    #window.blit()
     level.display(window)
     pygame.display.flip()
