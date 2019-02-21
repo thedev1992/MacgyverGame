@@ -8,7 +8,7 @@ class Needle:
 
     def __init__(self, obj, level):
 
-        self.obj = pygame.image.load(obj).convert_alpha
+        self.obj = pygame.image.load(obj ).convert_alpha
         self.level = level
         self.case_x, self.case_y = self.random_position()
         self.x = self.case_x * size_window2
