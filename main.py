@@ -6,6 +6,7 @@ from pygame.locals import*
 from Constant.constants import*
 from Classes.Mcgyver import *
 # from Classes.classes_object import*
+import time
 
 # pygame initialisation
 pygame.init()
@@ -26,14 +27,14 @@ level = Levelmaze(LevelG)
 level.generate()
 
 img_mac = pygame.image.load(img_MacGyver).convert_alpha()
-# macG = MacGyver("MacGyver.png")
+#  macG = MacGyver("MacGyver.png")
 wall = pygame.image.load(img_wall).convert()
 
+MacG = MacGyver()
 
-x = 0
-y = 0
 
-blue = 0,0,255
+K = None
+
 
 # main loop of the game
 game_over = False
@@ -42,23 +43,26 @@ while not game_over:
 
     for event in pygame.event.get():
         if event.type == KEYDOWN:
-            if event.key == K_RIGHT:
-                x = + 5
+            K = event.key
 
-            if event.key == K_LEFT:
-                x = - 5
-            if event.key == K_DOWN:
-                x = + 5
-            if event.key == K_UP:
-                x = - 5
+        elif event.type == KEYUP:
+            K = None
+    if K == K_RIGHT:
+        MacG.moveright()
+
+    if K == K_LEFT:
+        MacG.moveleft()
+    if K == K_DOWN:
+        MacG.movedown()
+    if K == K_UP:
+        MacG.moveup()
 
     screen.fill(black)
-    screen.blit(img_mac,(x,y))
-    # pygame.draw.rect(screen,blue,(x,y,100,100))
+    screen.blit(img_mac,(MacG.x, MacG.y))
 
     level.display(screen)
     pygame.display.flip()
-
+    time.sleep(0.05)
 
     if event.type == pygame.QUIT:
         game_over = True

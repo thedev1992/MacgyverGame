@@ -12,18 +12,16 @@ class MacGyver:
         self.y = 0
         self.speed = 10
 
-
     def moveright(self):
-        self.x =+ self.speed
-
+        self.x += self.speed
 
     def moveleft(self):
-        self.x = - 1 #self.speed
+        self.x -= self.speed
 
     def moveup(self):
-        self.y = - 1 #self.speed
+        self.y -= self.speed
 
     def movedown(self):
-        self.y =+ 1 #self.speed
+        self.y += self.speed
 
 
