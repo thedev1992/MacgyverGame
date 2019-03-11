@@ -2,7 +2,6 @@ import pygame
 from pygame.locals import *
 from Constant.constants import *
 
-
 # create a class for a level
 
 class Levelmaze:
@@ -44,7 +43,9 @@ class Levelmaze:
                 elif sprite == 'g':
                     window.blit(guard, (x, y))
 
-
+    def postion(self,case_x, case_y):
+        line = self.structure[int(case_y/size_window2)]
+        return line[int(case_x/size_window2)]
 
 
 

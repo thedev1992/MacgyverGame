@@ -27,11 +27,10 @@ level = Levelmaze(LevelG)
 level.generate()
 
 img_mac = pygame.image.load(img_MacGyver).convert_alpha()
-#  macG = MacGyver("MacGyver.png")
+# macG = MacGyver("MacGyver.png")
 wall = pygame.image.load(img_wall).convert()
 
 MacG = MacGyver()
-
 
 K = None
 
@@ -47,20 +46,27 @@ while not game_over:
 
         elif event.type == KEYUP:
             K = None
-    if K == K_RIGHT:
-        MacG.moveright()
+    if K == K_RIGHT and MacG.x < 830 - MacG.x:
+        # si y a un obstacle mac ne passe pas
+# size window2  = blockzise
 
-    if K == K_LEFT:
-        MacG.moveleft()
-    if K == K_DOWN:
-        MacG.movedown()
-    if K == K_UP:
-        MacG.moveup()
+           if level.postion(MacG.x + size_window2, MacG.y) == '0':
+                MacG.moveright()
+
+    if K == K_LEFT and MacG.x > 0:
+        if level.postion(MacG.x - size_window2, MacG.y) == '0':
+            MacG.moveleft()
+    if K == K_DOWN and MacG.y < 820 - MacG.y:
+        if level.postion(MacG.x, MacG.y + size_window2) == '0':
+            MacG.movedown()
+    if K == K_UP and MacG.y > 0:
+            if level.postion(MacG.x, MacG.y - size_window2) == '0':
+                MacG.moveup()
 
     screen.fill(black)
     screen.blit(img_mac,(MacG.x, MacG.y))
 
-    level.display(screen)
+    #level.display(screen)
     pygame.display.flip()
     time.sleep(0.05)
 
