@@ -8,11 +8,11 @@ class Needle:
 
     def __init__(self, obj, level):
 
-        self.obj = pygame.image.load(obj ).convert_alpha
+        self.obj = pygame.image.load(obj).convert_alpha
         self.level = level
         self.case_x, self.case_y = self.random_position()
-        self.x = self.case_x * size_window2
-        self.y = self.case_y * size_window2
+        self.x = self.case_x * size_case
+        self.y = self.case_y * size_case
 
     def random_position(self):
         count_max = 1
@@ -34,7 +34,6 @@ class Needle:
 
     # Method that display the item on the map
     def display(self, window):
-
         # Load the sprite
         img_needle = pygame.image.load("images/ether.png").convert_alpha()
 

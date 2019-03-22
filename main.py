@@ -48,25 +48,25 @@ while not game_over:
             K = None
     if K == K_RIGHT and MacG.x < 830 - MacG.x:
         # si y a un obstacle mac ne passe pas
-# size window2  = blockzise
+        # size window2  = blockzise
 
-           if level.postion(MacG.x + size_window2, MacG.y) == '0':
+            if level.postion(MacG.x + size_case, MacG.y) == '0':
                 MacG.moveright()
 
     if K == K_LEFT and MacG.x > 0:
-        if level.postion(MacG.x - size_window2, MacG.y) == '0':
+        if level.postion(MacG.x - size_case, MacG.y) == '0':
             MacG.moveleft()
     if K == K_DOWN and MacG.y < 820 - MacG.y:
-        if level.postion(MacG.x, MacG.y + size_window2) == '0':
+        if level.postion(MacG.x, MacG.y + size_case) == '0':
             MacG.movedown()
     if K == K_UP and MacG.y > 0:
-            if level.postion(MacG.x, MacG.y - size_window2) == '0':
+            if level.postion(MacG.x, MacG.y - size_case) == '0':
                 MacG.moveup()
 
     screen.fill(black)
-    screen.blit(img_mac,(MacG.x, MacG.y))
+    screen.blit(img_mac, (MacG.x, MacG.y))
 
-    #level.display(screen)
+    level.display(screen)
     pygame.display.flip()
     time.sleep(0.05)
 

@@ -1,10 +1,11 @@
 import pygame
 from pygame.locals import *
 from Constant.constants import *
-
 # create a class for a level
 
+
 class Levelmaze:
+
     # define a constructor
     def __init__(self, file):
         self.file = file
@@ -36,16 +37,16 @@ class Levelmaze:
 
             for num_sprite, sprite in enumerate(line):
 
-                x = num_sprite * size_window2
-                y = num_line * size_window2
+                x = num_sprite * size_case
+                y = num_line * size_case
                 if sprite == 'm':
                     window.blit(wall, (x, y))
                 elif sprite == 'g':
                     window.blit(guard, (x, y))
 
     def postion(self,case_x, case_y):
-        line = self.structure[int(case_y/size_window2)]
-        return line[int(case_x/size_window2)]
+        line = self.structure[int(case_y/size_case)]
+        return line[int(case_x/size_case)]
 
 
 
