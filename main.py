@@ -55,13 +55,16 @@ while not game_over:
                     MacG.moveright()
 
     if K == K_LEFT and MacG.x > 0:
-        if level.postion(MacG.x - size_case, MacG.y - 29) == '0':
-            MacG.moveleft()
+        if level.postion(MacG.x - 1, MacG.y) == '0':
+            if level.postion(MacG.x - 1, MacG.y + 29) == '0':
+                MacG.moveleft()
     if K == K_DOWN and MacG.y < windows - width_mac:
         if level.postion(MacG.x, MacG.y + size_case) == '0':
-            MacG.movedown()
+            if level.postion(MacG.x + 29, MacG.y + size_case) == '0':
+                MacG.movedown()
     if K == K_UP and MacG.y > 0:
-            if level.postion(MacG.x, MacG.y - size_case + 29) == '0':
+        if level.postion(MacG.x, MacG.y - 1) == '0':
+            if level.postion(MacG.x + 29, MacG.y - 1) == '0':
                 MacG.moveup()
 
     screen.fill(black)
