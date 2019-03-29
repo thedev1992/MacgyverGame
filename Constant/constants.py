@@ -2,6 +2,7 @@
 side_window1 = 15
 size_case = 30
 windows = side_window1 * size_case
+width_mac = 30
 
 # variables for images an the maze file
 img_wall = "wall.png"
