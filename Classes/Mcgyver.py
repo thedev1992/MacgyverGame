@@ -3,8 +3,6 @@ from pygame.locals import *
 from Constant.constants import *
 from Classes.Maze import *
 
-
-
 class MacGyver:
     def __init__(self):
         self.image = pygame.image.load(img_MacGyver).convert()

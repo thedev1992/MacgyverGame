@@ -5,7 +5,7 @@ from pygame.locals import*
 #from Classes.Maze impor*
 from Constant.constants import*
 from Classes.Mcgyver import *
-# from Classes.classes_object import*
+from Classes.item import *
 import time
 
 # pygame initialisation
@@ -32,6 +32,10 @@ wall = pygame.image.load(img_wall).convert()
 
 MacG = MacGyver()
 
+needle = pygame.image.load("needle.png").convert_alpha()
+ether = pygame.image.load("ether.png").convert_alpha()
+tube = pygame.image.load("tube.png").convert_alpha()
+
 K = None
 
 
@@ -47,28 +51,36 @@ while not game_over:
         elif event.type == KEYUP:
             K = None
     if K == K_RIGHT and MacG.x < windows - width_mac:
-        # si y a un obstacle mac ne passe pas
-        # size window2 = blockzise
-
-            if level.postion(MacG.x + size_case, MacG.y) == '0':
-                if level.postion(MacG.x + size_case, MacG.y + 29) == '0':
-                    MacG.moveright()
+        if level.postion(MacG.x + size_case, MacG.y) == '0':
+            if level.postion(MacG.x + size_case, MacG.y + 29) == '0':
+                MacG.moveright()
 
     if K == K_LEFT and MacG.x > 0:
         if level.postion(MacG.x - 1, MacG.y) == '0':
             if level.postion(MacG.x - 1, MacG.y + 29) == '0':
                 MacG.moveleft()
+
     if K == K_DOWN and MacG.y < windows - width_mac:
         if level.postion(MacG.x, MacG.y + size_case) == '0':
             if level.postion(MacG.x + 29, MacG.y + size_case) == '0':
                 MacG.movedown()
+
     if K == K_UP and MacG.y > 0:
         if level.postion(MacG.x, MacG.y - 1) == '0':
             if level.postion(MacG.x + 29, MacG.y - 1) == '0':
                 MacG.moveup()
 
+    if level.postion(MacG.x + size_case, MacG.y) == 'g':
+        game_over = True
+
     screen.fill(black)
     screen.blit(img_mac, (MacG.x, MacG.y))
+
+    screen.blit(tube, (0, 200))
+
+    screen.blit(needle, (200, 150))
+
+    screen.blit(ether, (350, 150))
 
     level.display(screen)
     pygame.display.flip()
