@@ -3,23 +3,31 @@ from pygame.locals import *
 from Constant.constants import *
 from Classes.Maze import *
 
-class MacGyver:
-    def __init__(self):
+
+class MacGyver(pygame.sprite.Sprite):
+
+    def __init__(self, x,y):
+        pygame.sprite.Sprite.__init__(self)
+
         self.image = pygame.image.load(img_MacGyver).convert()
-        self.x = 0
-        self.y = 0
+        self.rect = self.image.get_rect()
         self.speed = 10
+        self.rect.x = x
+        self.rect.y = y
 
     def moveright(self):
-        self.x += self.speed
+        self.rect.x += self.speed
 
     def moveleft(self):
-        self.x -= self.speed
+        self.rect.x -= self.speed
 
     def moveup(self):
-        self.y -= self.speed
+        self.rect.y -= self.speed
 
     def movedown(self):
-        self.y += self.speed
+        self.rect.y += self.speed
+
+
+
 
 

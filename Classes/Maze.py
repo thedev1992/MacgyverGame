@@ -44,7 +44,7 @@ class Levelmaze:
                 elif sprite == 'g':
                     window.blit(guard, (x, y))
 
-    def postion(self,case_x, case_y):
+    def postion(self, case_x, case_y):
         line = self.structure[int(case_y/size_case)]
         return line[int(case_x/size_case)]
 
