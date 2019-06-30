@@ -6,7 +6,7 @@ from Classes.Maze import *
 
 class MacGyver(pygame.sprite.Sprite):
 
-    def __init__(self, x,y):
+    def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load(img_MacGyver).convert()
