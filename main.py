@@ -4,8 +4,10 @@ from Classes.Maze import *
 from Constant.constants import*
 from Classes.Mcgyver import *
 from Classes.item import *
+from Classes.function import *
 from random import randint
 import time
+
 
 # pygame initialisation
 pygame.init()
@@ -19,10 +21,9 @@ white = 255, 255, 255
 # title of the Game
 pygame.display.set_caption('Mac Gyver')
 
-# create a background instance and apply it at the window
+# create a color instance and apply it at the window
 black = 0,0,0
 
-# refresh de the windowpygame.display.flip()
 
 # create an instance of a level and his generation
 level = Levelmaze(LevelG)
@@ -32,39 +33,10 @@ img_mac = pygame.image.load(img_MacGyver).convert_alpha()
 # macG = MacGyver("MacGyver.png")
 wall = pygame.image.load(img_wall).convert()
 
-needle = pygame.image.load("needle.png").convert_alpha()
-ether = pygame.image.load("ether.png").convert_alpha()
-tube = pygame.image.load("tube.png").convert_alpha()
 
-position_found = False
-while position_found == False:
-
-    pos_x = (randint(0, 14) * size_case)
-    pos_y = (randint(0, 14) * size_case)
-    if level.postion(pos_x, pos_y) == '0':
-        item1 = Item(tube, pos_x, pos_y)
-
-        position_found = True
-
-position_found = False
-while position_found == False:
-
-    pos_x = (randint(0, 14) * size_case)
-    pos_y = (randint(0, 14) * size_case)
-    if level.postion(pos_x, pos_y) == '0':
-        item2 = Item(needle, pos_x, pos_y)
-
-        position_found = True
-
-position_found = False
-while position_found == False:
-
-    pos_x = (randint(0, 14) * size_case)
-    pos_y = (randint(0, 14) * size_case)
-    if level.postion(pos_x, pos_y) == '0':
-        item3 = Item(ether, pos_x, pos_y)
-
-        position_found = True
+item1 = item_position(needle)
+item2 = item_position(ether)
+item3 = item_position(tube)
 
 item_list = pygame.sprite.Group()
 all_sprites_list = pygame.sprite.Group()
@@ -74,15 +46,31 @@ item_list.add(item1, item2, item3)
 
 all_sprites_list.add(item1, item2, item3, MacG)
 
-
 K = None
+Score = 0
+
 
 def score(score):
     text = smallfont.render("score:" + str(score), True, white)
     screen.blit(text, [0, 0])
 
-Score = 0
-# main loop of the game
+
+def text_objects(text, font):
+    textSurface = font.render(text, True, white)
+    return textSurface, textSurface.get_rect()
+
+
+def message_display(text):
+    largeText = pygame.font.Font('freesansbold.ttf', 70)
+    TextSurf, TextRect = text_objects(text, largeText)
+    TextRect.center = ((windows / 2), (windows / 4))
+    screen.blit(TextSurf, TextRect)
+
+    pygame.display.update()
+
+    time.sleep(0.05)
+
+
 game_over = False
 
 while not game_over:
@@ -114,11 +102,10 @@ while not game_over:
                 MacG.moveup()
 
     if level.postion(MacG.rect.x + size_case, MacG.rect.y) == 'g' and Score == 3:
-        print('game won')
+        message_display("GAME WON \n CONGRATULATION!")
 
     if level.postion(MacG.rect.x + size_case, MacG.rect.y) == 'g' and Score < 3:
-        print('GAME lost')
-
+        message_display('GAME LOST')
 
     blocks_hit_list = pygame.sprite.spritecollide(MacG, item_list, True)
 
@@ -139,3 +126,10 @@ while not game_over:
 
     if event.type == pygame.QUIT:
         game_over = True
+
+
+
+
+
+
+

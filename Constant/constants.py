@@ -5,11 +5,14 @@ windows = side_window1 * size_case
 width_mac = 30
 
 # variables for images an the maze file
-img_wall = "wall.png"
-img_background = "fond.jpg"
-img_guardian = 'gardien.png'
-img_MacGyver = "MacGyver.png"
+img_wall = "Assets/wall.png"
+img_background = "Assets/fond.jpg"
+img_guardian = 'Assets/gardien.png'
+img_MacGyver = "Assets/MacGyver.png"
 LevelG = "n1"
-img_needle = 'needle.png'
-img_syringe = 'ether.png'
-img_plastic_tube = 'tube.png'
+img_needle = 'Assets/needle.png'
+img_syringe = 'Assets/ether.png'
+img_plastic_tube = 'Assets/tube.png'
+
+
+

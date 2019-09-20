@@ -4,7 +4,9 @@ from Constant.constants import *
 from random import randint
 from Classes.Maze import *
 
-
+needle = pygame.image.load("Assets/needle.png").convert_alpha()
+ether = pygame.image.load("Assets/ether.png").convert_alpha()
+tube = pygame.image.load("Assets/tube.png").convert_alpha()
 
 
 class Item(pygame.sprite.Sprite):
@@ -17,8 +19,6 @@ class Item(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = pos_x
         self.rect.y = pos_y
-
-
 
 
 

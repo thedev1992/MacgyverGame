@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from Constant.constants import *
+
 # create a class for a level
 
 
@@ -11,6 +12,7 @@ class Levelmaze:
         self.file = file
         self.structure = 0
 
+    # Method that generate the level from the levelGame.txt
     def generate(self):
 
         with open(self.file, "r") as file:
@@ -18,18 +20,20 @@ class Levelmaze:
 
             for line in file:
                 line_level = []
-
+                # Reading every letters in file
                 for sprite in line:
-
+                    # Ignoring the last sprite to continue with the next line
                     if sprite != '\n':
-
+                        # Reading every letters in file
                         line_level.append(sprite)
-
+                # Adding every lines the the array
                 structure_level.append(line_level)
+                # Then the method save the entire structure of the level
             self.structure = structure_level
 
+    # This method display the level into the window
     def display(self, window):
-
+        # Load the img of the structure of the level
         wall = pygame.image.load(img_wall).convert()
         guard = pygame.image.load(img_guardian).convert()
 
