@@ -29,4 +29,4 @@ afin de remporter la partie en fonction du nombres d'objets collectés.
 Pour installer et executer suivez les instructions suivantes :
 
 * git clone https://github.com/thedev1992/MacgyverGame.git
-* python3 macgyver.py on macos/linux or py -3 macgyver.py on windows
+* python3 macgyver.py on macos/linux or py -3 main.py on windows
