@@ -14,6 +14,8 @@ import time
 white = 255, 255, 255
 
 
+
+
 def score(score,smallfont,screen):
     text = smallfont.render("score:" + str(score), True, white)
     screen.blit(text, [0, 0])
@@ -75,7 +77,10 @@ def main():
 
     game_over = False
 
+    shoot_quit = 0
+
     while not game_over:
+        screen.fill(black)
 
         for event in pygame.event.get():
             if event.type == KEYDOWN:
@@ -84,37 +89,29 @@ def main():
             elif event.type == KEYUP:
                 K = None
         if K == K_RIGHT and MacG.rect.x < windows - width_mac:
-            if level.postion(MacG.rect.x + size_case, MacG.rect.y) == '0':
-                if level.postion(MacG.rect.x + size_case, MacG.rect.y + 29) == '0':
+            if level.typecase(MacG.rect.x + size_case, MacG.rect.y) == '0':
+                if level.typecase(MacG.rect.x + size_case, MacG.rect.y + 29) == '0':
                     MacG.moveright()
 
         if K == K_LEFT and MacG.rect.x > 0:
-            if level.postion(MacG.rect.x - 1, MacG.rect.y) == '0':
-                if level.postion(MacG.rect.x - 1, MacG.rect.y + 29) == '0':
+            if level.typecase(MacG.rect.x - 1, MacG.rect.y) == '0':
+                if level.typecase(MacG.rect.x - 1, MacG.rect.y + 29) == '0':
                     MacG.moveleft()
 
         if K == K_DOWN and MacG.rect.y < windows - width_mac:
-            if level.postion(MacG.rect.x, MacG.rect.y + size_case) == '0':
-                if level.postion(MacG.rect.x + 29, MacG.rect.y + size_case) == '0':
+            if level.typecase(MacG.rect.x, MacG.rect.y + size_case) == '0':
+                if level.typecase(MacG.rect.x + 29, MacG.rect.y + size_case) == '0':
                     MacG.movedown()
 
         if K == K_UP and MacG.rect.y > 0:
-            if level.postion(MacG.rect.x, MacG.rect.y - 1) == '0':
-                if level.postion(MacG.rect.x + 29, MacG.rect.y - 1) == '0':
+            if level.typecase(MacG.rect.x, MacG.rect.y - 1) == '0':
+                if level.typecase(MacG.rect.x + 29, MacG.rect.y - 1) == '0':
                     MacG.moveup()
-
-        if level.postion(MacG.rect.x + size_case, MacG.rect.y) == 'g' and Score == 3:
-            message_display("GAME WON \n CONGRATULATION!", screen)
-
-        if level.postion(MacG.rect.x + size_case, MacG.rect.y) == 'g' and Score < 3:
-            message_display('GAME LOST', screen)
 
         blocks_hit_list = pygame.sprite.spritecollide(MacG, item_list, True)
 
         for block in blocks_hit_list:
             Score += 1
-
-        screen.fill(black)
 
         all_sprites_list.draw(screen)
 
@@ -122,9 +119,20 @@ def main():
 
         score(Score, smallfont, screen)
 
+        if level.typecase(MacG.rect.x + size_case, MacG.rect.y) == 'g' and Score == 3:
+            shoot_quit = 1
+            message_display("GAME WON \n CONGRATULATION!", screen)
+
+        if level.typecase(MacG.rect.x + size_case, MacG.rect.y) == 'g' and Score < 3:
+            shoot_quit = 1
+            message_display('GAME LOST', screen)
+
         pygame.display.flip()
 
         time.sleep(0.05)
+        if shoot_quit == 1:
+            time.sleep(2)
+            game_over = True
 
         if event.type == pygame.QUIT:
             game_over = True

@@ -13,7 +13,7 @@ def item_position(item_object):
 
         pos_x = (randint(0, 14) * size_case)
         pos_y = (randint(0, 14) * size_case)
-        if level.postion(pos_x, pos_y) == '0':
+        if level.typecase(pos_x, pos_y) == '0':
             items = Item(item_object, pos_x, pos_y)
             return items
 
