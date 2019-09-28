@@ -7,7 +7,7 @@ width_mac = 30
 # variables for images an the maze file
 img_wall = "Assets/wall.png"
 img_background = "Assets/fond.jpg"
-img_guardian = 'Assets/gardien.png'
+img_guardian = 'Assets/Gardien.png'
 img_MacGyver = "Assets/MacGyver.png"
 LevelG = "n1"
 img_needle = 'Assets/needle.png'
